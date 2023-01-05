@@ -1,0 +1,34 @@
+.nav__contents{
+    display: flex;
+    justify-content: space-between;
+}
+.nav__logo{
+    position: fixed;
+    top: 10px;
+    left: 0px;
+    width: 80px;
+    padding-left: 20px;
+    cursor: pointer;
+
+    object-fit: contain; 
+    /* contain - The image keeps its aspect ratio, but is resized to fit within the given dimension */
+}
+.nav__black{
+    top: fixed;
+    width: 100%;
+    background-color: black;
+    padding: 20px;
+    height: 30px;
+    z-index: 1;
+
+    /* Animations */
+    transition-timing-function: ease-in;
+    transition: all 0.5s;
+}
+
+.nav__avatar{
+    cursor: pointer;
+    position: fixed;
+    right: 20px;
+    width: 30px;
+}
