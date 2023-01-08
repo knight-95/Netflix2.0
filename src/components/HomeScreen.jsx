@@ -1,4 +1,5 @@
 import React from 'react'
+import Banner from './Banner';
 import './HomeScreen.css';
 import Navbar from './Navbar';
 
@@ -6,20 +7,7 @@ const HomeScreen = () => {
   return (
     <div className='homescreen'>
         <Navbar/>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
-        <h1>test</h1>
+        <Banner/>
         
     </div>
   )
