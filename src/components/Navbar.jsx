@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [show, handleShow] = useState(true);
+  const [show, handleShow] = useState(false);
 
   const transitionNavbar = () => {
     if (window.scrollY > 100) {
-      handleShow(false);
-    } else {
       handleShow(true);
+    } else {
+      handleShow(false);
     }
   };
   useEffect(() => {
@@ -35,7 +35,6 @@ const Navbar = () => {
           alt="avatar"
         />
       </div>
-      Navbar
     </div>
   );
 };
