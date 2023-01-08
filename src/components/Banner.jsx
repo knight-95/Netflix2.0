@@ -21,7 +21,7 @@ const Banner = () => {
 
     fetchData();
   }, []);
-  console.log(movie);
+  // console.log(movie);
 
   // If the description is too large, then we will truncate it i.e replace remaining text with ........
 
