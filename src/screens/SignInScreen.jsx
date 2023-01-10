@@ -3,6 +3,7 @@ import { auth } from "../firebase";
 import "./SignInScreen.css";
 
 const SignInScreen = () => {
+
   // a big finger pointing to a HTML element
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -10,22 +11,24 @@ const SignInScreen = () => {
   const register = (e) => {
     // to prevent refreshing page
     e.preventDefault();
-    auth
-      .createUserWithEmailAndPassword(
-        emailRef.current.value,
-        passwordRef.current.value
-      )
-      .then((authUser) => {
+    auth.createUserWithEmailAndPassword(
+      emailRef.current.value,
+      passwordRef.current.value
+    ).then((authUser) => {
         console.log(authUser);
-      })
-      .catch((error) => {
-        alert(error.message);
-      });
+    }).catch(error => {
+      alert(error.message);
+    })
+    
   };
 
   const signIn = (e) => {
     e.preventDefault();
+    // console.log(emailRef);
+    // console.log(emailRef.current.value);
   };
+
+
   return (
     <div className="signupScreen">
       <form>
