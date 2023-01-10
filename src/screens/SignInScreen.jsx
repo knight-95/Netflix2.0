@@ -24,8 +24,15 @@ const SignInScreen = () => {
 
   const signIn = (e) => {
     e.preventDefault();
-    // console.log(emailRef);
-    // console.log(emailRef.current.value);
+
+    auth.signInWithEmailAndPassword(
+      emailRef.current.value,
+      passwordRef.current.value
+    ).then((authUser) => {
+      console.log(authUser);
+  }).catch(error => {
+    alert(error.message);
+  })
   };
 
 
