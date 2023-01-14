@@ -9,7 +9,7 @@ import "./ProfileScreen.css";
 const ProfileScreen = () => {
   const user = useSelector(selectUser);
   return (
-    <div className="profileScreen">
+      <div className="profileScreen">
       <Navbar />
       <div className="profileScreen__body">
         <h1>Edit Profile</h1>
