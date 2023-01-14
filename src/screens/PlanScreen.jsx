@@ -1,3 +1,4 @@
+import { loadStripe } from "@stripe/stripe-js";
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../features/userSlice";
@@ -9,6 +10,24 @@ const PlanScreen = () => {
 
   //   pulling from Redux
   const user = useSelector(selectUser);
+  const [subscription, setSubscription] = useState(null);
+
+  useEffect(() => {
+    db.collection("customers")
+      .doc(user.uid)
+      .collection("subscriptions")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach(async (subscription) => {
+          setSubscription({
+            role: subscription.data().role,
+            current_period_end: subscription.data().current_period_end.seconds,
+            current_period_start:
+              subscription.data().current_period_start.seconds,
+          });
+        });
+      });
+  }, [user.uid]);
 
   useEffect(() => {
     db.collection("products")
@@ -33,7 +52,6 @@ const PlanScreen = () => {
   console.log(products);
 
   const loadCheckout = async (priceId) => {
-
     const docRef = await db
       .collection("customers")
       .doc(user.uid)
@@ -44,40 +62,68 @@ const PlanScreen = () => {
         cancel_url: window.location.origin,
       });
 
-      docRef.onSnapshot(async(snap) => {
-        const {error , sessionId } = snap.data();
+    docRef.onSnapshot(async (snap) => {
+      const { error, sessionId } = snap.data();
 
-        if(error){
-            // Shows an error to your customer and
-            // inspect your Cloud Function logs in the Firebase console
-            alert(`An error occured: ${error.message}`);
-        }
+      if (error) {
+        // Shows an error to your customer and
+        // inspect your Cloud Function logs in the Firebase console
+        alert(`An error occured: ${error.message}`);
+      }
 
-        if(sessionId){
-            // Now we have a session, so let's redirect to checkout
-            
-        }
-      });
+      if (sessionId) {
+        // Now we have a session, so let's redirect to checkout
+        // Initialize Stripe
+
+        const stripe = await loadStripe(
+          "pk_live_51MQ298SCi4QcPJKMe0BymGtl6GhTQw27JvGarf5BApM1b1Jgff0SXu2tufMnTEMeIyX33Nyxrhvlj4Dw5gB2KBRg00xYHFaVB2"
+        );
+
+        stripe.redirectToCheckout({ sessionId });
+      }
+    });
   };
 
   return (
     <div className="plansScreen">
+      {subscription && (
+        <p>
+          Renewal Date:{" "}
+          {new Date(subscription?.current_period_end * 1000).toLocaleDateString}
+        </p>
+      )}
       {/* Mapping through object */}
 
       {Object.entries(products).map(([productId, productData]) => {
-        {
-          /* Logic to check if user's subscription is active... */
-        }
+        // Logic to check if user's subscription is active...
+
+        const isCurrentPackage = productData.name
+          ?.toLowerCase()
+          .includes(subscription?.role);
+
+        
+          // const isCurrentPackage = true; 
+        
 
         return (
-          <div className="planScreen__plan">
+          <div
+            key={productId}
+            className ="planScreen__plan"
+            // className={`${
+            //   isCurrentPackage && "planScreen__plan--disabled"
+            // } plansScreen__plan`}
+          >
             <div className="planScreen__info">
               <h5>{productData.name}</h5>
               <h6>{productData.description}</h6>
             </div>
 
-            <button onClick={() => loadCheckout(productData.prices.priceId)}>
-              Subscribe
+            <button
+              onClick={() =>
+                !isCurrentPackage && loadCheckout(productData.prices.priceId)
+              }
+            >
+              {isCurrentPackage ? "Current Package" : "Subscribe"}
             </button>
           </div>
         );
