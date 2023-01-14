@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 import db from "../firebase";
 import "./PlanScreen.css";
 
 const PlanScreen = () => {
   const [products, setProducts] = useState([]);
+
+  //   pulling from Redux
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     db.collection("products")
@@ -26,8 +31,33 @@ const PlanScreen = () => {
   }, []);
 
   console.log(products);
-  const loadCheckout = async (priceId) =>{
-    
+
+  const loadCheckout = async (priceId) => {
+
+    const docRef = await db
+      .collection("customers")
+      .doc(user.uid)
+      .collection("checkout_sessions")
+      .add({
+        price: priceId,
+        success_url: window.location.origin,
+        cancel_url: window.location.origin,
+      });
+
+      docRef.onSnapshot(async(snap) => {
+        const {error , sessionId } = snap.data();
+
+        if(error){
+            // Shows an error to your customer and
+            // inspect your Cloud Function logs in the Firebase console
+            alert(`An error occured: ${error.message}`);
+        }
+
+        if(sessionId){
+            // Now we have a session, so let's redirect to checkout
+            
+        }
+      });
   };
 
   return (
@@ -46,7 +76,9 @@ const PlanScreen = () => {
               <h6>{productData.description}</h6>
             </div>
 
-            <button onClick={()=>loadCheckout(productData.prices.priceId)}>Subscribe</button>
+            <button onClick={() => loadCheckout(productData.prices.priceId)}>
+              Subscribe
+            </button>
           </div>
         );
       })}

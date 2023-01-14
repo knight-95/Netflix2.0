@@ -8,7 +8,7 @@ planScreen__plan:hover {
   opacity: 1;
 }
 
-planScreen__plan > button {
+.planScreen__plan > button {
     padding: 10px 20px;
     font-size: 1rem;
     color: #fff;
