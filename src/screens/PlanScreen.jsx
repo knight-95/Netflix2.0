@@ -75,8 +75,12 @@ const PlanScreen = () => {
         // Now we have a session, so let's redirect to checkout
         // Initialize Stripe
 
+        // const stripe = await loadStripe(
+        //   "pk_live_51MQ298SCi4QcPJKMe0BymGtl6GhTQw27JvGarf5BApM1b1Jgff0SXu2tufMnTEMeIyX33Nyxrhvlj4Dw5gB2KBRg00xYHFaVB2"
+        // );
+
         const stripe = await loadStripe(
-          "pk_live_51MQ298SCi4QcPJKMe0BymGtl6GhTQw27JvGarf5BApM1b1Jgff0SXu2tufMnTEMeIyX33Nyxrhvlj4Dw5gB2KBRg00xYHFaVB2"
+          "pk_test_51MQ298SCi4QcPJKMabdB5Uaf8FRpDRBESqGZ54Nu01B4gZpQjAgVLVQWamEA3KNjPd82klwHvDN7fBQGnFXtxlG000sx1N65Kg"
         );
 
         stripe.redirectToCheckout({ sessionId });
@@ -101,14 +105,12 @@ const PlanScreen = () => {
           ?.toLowerCase()
           .includes(subscription?.role);
 
-        
-          // const isCurrentPackage = true; 
-        
+        // const isCurrentPackage = true;
 
         return (
           <div
             key={productId}
-            className ="planScreen__plan"
+            className="planScreen__plan"
             // className={`${
             //   isCurrentPackage && "planScreen__plan--disabled"
             // } plansScreen__plan`}
@@ -124,6 +126,7 @@ const PlanScreen = () => {
               }
             >
               {isCurrentPackage ? "Current Package" : "Subscribe"}
+              
             </button>
           </div>
         );
