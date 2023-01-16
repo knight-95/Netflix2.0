@@ -12,6 +12,11 @@ Password: password
 
 <img src="https://pbs.twimg.com/media/FmN65oKaUAAQ2We?format=jpg&name=medium" alt="Homepage"/>
 
+### Profile Page
+
+- Here you can choose your pack
+<img src="https://drive.google.com/file/d/1B8zvS6751GNTF9CHSGUINqWztENBzq2z/view?usp=share_link" alt="Profile Page" />
+
 ## Checkout:
 
 For checkout, you can use the following Card details
