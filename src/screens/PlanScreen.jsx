@@ -5,7 +5,10 @@ import { selectUser } from "../features/userSlice";
 import db from "../firebase";
 import "./PlanScreen.css";
 
+import { useNavigate } from "react-router-dom";
+
 const PlanScreen = () => {
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
   //   pulling from Redux
@@ -96,7 +99,8 @@ const PlanScreen = () => {
           {new Date(subscription?.current_period_end * 1000).toLocaleDateString}
         </p>
       )}
-      {/* Mapping through object */}
+
+      {/* Mapping through object  */}
 
       {Object.entries(products).map(([productId, productData]) => {
         // Logic to check if user's subscription is active...
@@ -105,15 +109,19 @@ const PlanScreen = () => {
           ?.toLowerCase()
           .includes(subscription?.role);
 
-        // const isCurrentPackage = true;
-
         return (
           <div
+
+
+        //   className={`nav ${show && "nav__black"}`}>
+      /* only add nav__black class when show variable is true */
+
             key={productId}
-            className="planScreen__plan"
-            // className={`${
-            //   isCurrentPackage && "planScreen__plan--disabled"
-            // } plansScreen__plan`}
+            // className="planScreen__plan"
+
+            className={` planScreen__plan ${
+              isCurrentPackage && "planScreen__plan--disabled"
+            }`}
           >
             <div className="planScreen__info">
               <h5>{productData.name}</h5>
@@ -121,12 +129,12 @@ const PlanScreen = () => {
             </div>
 
             <button
-              onClick={() =>
-                !isCurrentPackage && loadCheckout(productData.prices.priceId)
-              }
+              onClick={() => {
+                !isCurrentPackage && loadCheckout(productData.prices.priceId);
+                isCurrentPackage ? navigate("/") : loadCheckout(productData.prices.priceId) ;
+              }}
             >
               {isCurrentPackage ? "Current Package" : "Subscribe"}
-              
             </button>
           </div>
         );
