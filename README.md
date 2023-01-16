@@ -3,6 +3,14 @@
 This project is deployed live at :
 https://netflix-india-95.netlify.app/
 
+
+Login ID: admin@gmail.com
+Password: password
+
+- You can create your own account by filling your email ID and password and then clicking on Sign Up option
+
+- You will then be redirected to profile page where you can purchase plan if not already purchased
+
 <img src="https://pbs.twimg.com/media/FmN65oKaUAAQ2We?format=jpg&name=medium" alt="Homepage"/>
 
 ## Checkout:
