@@ -1,7 +1,16 @@
-# Getting Started with Create React App and Redux
+# Netflix 2.0
 
 This project is deployed live at :
-To be uploaded soon
+https://netflix-india-95.netlify.app/
+
+
+### Checkout:
+
+For checkout, you can use the following Card details
+
+CARD NUMBER     :   4242 4242 4242 4242
+EXPIRY          :   04/24
+CVV             :   424
 
 ## Available Scripts
 
