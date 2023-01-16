@@ -5,13 +5,13 @@ https://netflix-india-95.netlify.app/
 
 <img src="https://pbs.twimg.com/media/FmN65oKaUAAQ2We?format=jpg&name=medium" alt="Homepage"/>
 
-### Checkout:
+## Checkout:
 
 For checkout, you can use the following Card details
 
-<h3>CARD NUMBER     : 4242 4242 4242 4242 </h3>
-<h3>EXPIRY          : 04/24 </h3>
-<h3>CVV             : 424 </h3>
+<h5>CARD NUMBER     : 4242 4242 4242 4242 </h5>
+<h5>EXPIRY          : 04/24 </h5>
+<h5>CVV             : 424 </h5>
 
 ## Available Scripts
 
