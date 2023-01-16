@@ -9,9 +9,9 @@ https://netflix-india-95.netlify.app/
 
 For checkout, you can use the following Card details
 
-CARD NUMBER     : 4242 4242 4242 4242
-EXPIRY          : 04/24
-CVV             : 424
+<h3>CARD NUMBER     : 4242 4242 4242 4242 </h3>
+<h3>EXPIRY          : 04/24 </h3>
+<h3>CVV             : 424 </h3>
 
 ## Available Scripts
 
