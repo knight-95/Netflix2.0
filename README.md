@@ -1,8 +1,7 @@
 # Netflix 2.0
 
 This project is deployed live at :
-https://netflix-india-95.netlify.app/
-
+https://netflixclone95.web.app
 
 Login ID: admin@gmail.com
 Password: password
